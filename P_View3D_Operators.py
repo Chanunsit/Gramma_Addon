@@ -557,6 +557,7 @@ class Uv(bpy.types.Operator):
             bpy.context.area.ui_type = 'VIEW_3D'
         bpy.ops.uv.seams_from_islands()
         
+        
         print("Smart Unwrap")
         return {'FINISHED'}
         
@@ -748,6 +749,7 @@ class Uv(bpy.types.Operator):
             if context.scene.Panda_Tools.live_uv:
                 if context.scene.tool_settings.use_uv_select_sync == False:
                     bpy.context.scene.tool_settings.use_uv_select_sync = True
+                    print("ghj")
                 else:
                     pass
                 bpy.context.area.ui_type = 'UV'
@@ -755,7 +757,7 @@ class Uv(bpy.types.Operator):
                 bpy.ops.uv.snap_cursor(target='SELECTED')
                 bpy.ops.uv.panda_operator(action="@_PackUV_Together")
             
-                P_Funtion.focus_UV_editor_area()
+                # P_Funtion.focus_UV_editor_area()
                 bpy.context.area.ui_type = 'VIEW_3D'
 
                
@@ -776,7 +778,7 @@ class Uv(bpy.types.Operator):
                 bpy.context.area.ui_type = 'UV'
                 bpy.ops.uv.panda_operator(action="@_SmartUnwrap")
                 bpy.ops.uv.panda_operator(action="@_PackUV_Together")
-                P_Funtion.focus_UV_editor_area()
+                # P_Funtion.focus_UV_editor_area()
                 bpy.context.area.ui_type = 'VIEW_3D'
 
 
