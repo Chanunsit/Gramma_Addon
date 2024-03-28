@@ -7,6 +7,7 @@ from bpy.types import ( PropertyGroup, )
 from bpy.props import (PointerProperty, StringProperty)
 from . import P_Funtion
 from . import P_UI
+from . import P_UvEditor_Operators
 
 class ExampleClass(bpy.types.Operator):
     bl_idname = "object.name"
@@ -803,7 +804,7 @@ class Uv(bpy.types.Operator):
         bpy.ops.uv.select_all(action='SELECT')
         bpy.ops.uv.seams_from_islands()
         bpy.context.area.ui_type = 'VIEW_3D'
-        bpy.ops.object.mode_set(mode='OBJECT')
+        
 
 
         return {'FINISHED'}
@@ -814,18 +815,19 @@ class Uv(bpy.types.Operator):
         distance = 0.07
         if bpy.context.active_object.mode == 'EDIT':
             bpy.context.area.ui_type = 'UV'
-            if context.scene.Panda_Tools.uv_keep_position:
-                bpy.ops.uv.snap_cursor(target='SELECTED')
-            if context.scene.Panda_Tools.pack_by_linked:
-                bpy.ops.mesh.select_linked(delimit={'NORMAL'})
+            P_UvEditor_Operators.UV_Editor.SmartUnwrap(self, context)
+            # if context.scene.Panda_Tools.uv_keep_position:
+            #     bpy.ops.uv.snap_cursor(target='SELECTED')
+            # if context.scene.Panda_Tools.pack_by_linked:
+            #     bpy.ops.mesh.select_linked(delimit={'NORMAL'})
             
-            bpy.ops.uv.unwrap(method='ANGLE_BASED', margin = distance)
-            bpy.ops.uv.align_rotation(method='GEOMETRY', axis='Z')
-            bpy.ops.uv.align_rotation(method='AUTO')
-            bpy.ops.uv.pack_islands(udim_source='ACTIVE_UDIM', rotate=False, margin_method='SCALED', margin=distance)
+            # bpy.ops.uv.unwrap(method='ANGLE_BASED', margin = distance)
+            # bpy.ops.uv.align_rotation(method='GEOMETRY', axis='Z')
+            # bpy.ops.uv.align_rotation(method='AUTO')
+            # bpy.ops.uv.pack_islands(udim_source='ACTIVE_UDIM', rotate=False, margin_method='SCALED', margin=distance)
             
-            if context.scene.Panda_Tools.texel_set:
-                P_Funtion.settexel_textool(self, context)
+            # if context.scene.Panda_Tools.texel_set:
+            #     P_Funtion.settexel_textool(self, context)
             
             bpy.context.area.ui_type = 'VIEW_3D'
             

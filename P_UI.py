@@ -217,8 +217,7 @@ class VIEW3D_PT_Panda(bpy.types.Panel):
             col1.operator(P_View3D_Operators.Uv.bl_idname, text="Group ").action="@_Vertex_group"
             col1.operator(P_View3D_Operators.Uv.bl_idname, text="Select").action="@_Select_group"
             col1.operator(P_View3D_Operators.Uv.bl_idname, text="Clear").action="@_Clear_group"
-            # col1.operator(P_View3D_Operators.Uv.bl_idname, text="Smart UV",icon = "ERROR" ).action="@_smart_unwrap"
-           
+            # col1.operator(P_View3D_Operators.Uv.bl_idname, text="Smart UV",icon = "ERROR" ).action="@_smart_unwrap" 
             if Panda_Property.live_uv == False:
                
                 col1.operator(P_View3D_Operators.Uv.bl_idname, text="Unwrap").action="@_UV_quick" 
